@@ -1,0 +1,8 @@
+.DS_Store
+*.csv
+HillsboroughFL/venv
+HillsboroughFL/hillspider
+ghostdriver.log
+SantaClaraCA/Active
+SantaClaraCA/Closed
+SantaClaraCA/combinecsv.sh
