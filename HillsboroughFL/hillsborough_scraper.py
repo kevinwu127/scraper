@@ -91,8 +91,8 @@ def main():
 	#Superior Court of Florida, County of Hillsborough
 	url = 'http://pubrec10.hillsclerk.com/Unsecured/default.aspx'
 	status = "Open"
-	date_start = date(2016, 1, 8)
-	date_end = date(2016, 2, 8)
+	date_start = date(2015, 10, 1)
+	date_end = date(2015, 12, 31)
 	county = "HillsboroughFL"
 
 	#initialize Scraper class
@@ -156,13 +156,21 @@ def main():
 			field_xpath = '/html/body/table[3]/tbody/tr/td[3]/table/tbody/tr/td/table/tbody/tr[4]/td/b'
 			judicial_officer = hills.acquire_field_text(field_xpath)
 
-			field_xpath = '//*[@id="PIr11"]'
-			petitioner = hills.acquire_field_text(field_xpath)
-
-			field_xpath = '//*[@id="PIr12"]'
-			respondent = hills.acquire_field_text(field_xpath)
-
 			hills.set_timer(0.3)
+			try:
+				field_xpath = '//*[@id="PIr11"]'
+				petitioner = hills.acquire_field_text(field_xpath)
+			except:
+				field_xpath = '//*[@id="PIr12"]'
+				petitioner = hills.acquire_field_text(field_xpath)
+
+			try:
+				field_xpath = '//*[@id="PIr12"]'
+				respondent = hills.acquire_field_text(field_xpath)
+			except:
+				field_xpath = '//*[@id="PIr13"]'
+				respondent = hills.acquire_field_text(field_xpath)
+
 			try:
 				field_xpath = '/html/body/table[4]/tbody/tr[2]/td[3]'
 				petitioner_attorney = cleanse(hills.acquire_field_text(field_xpath))
